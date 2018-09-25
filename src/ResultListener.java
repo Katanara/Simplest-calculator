@@ -7,40 +7,40 @@ public class ResultListener implements ActionListener {           // слуша�
     public void actionPerformed(ActionEvent e) {
         String first = "";                     //первая переменная
         String second = "";                   //вторая переменная
-        String operation = "";                  //хранитель оператора вычисления
-        String[] strings = GUI.jTextField.getText().split("");       //превращаем текст из текстового поля в массив символов
+        char operation = ' ';                  //хранитель оператора вычисления
+        String text = GUI.jTextField.getText();
         Calculating calculating = new Calculating();                       //экземпляр вычисления
 
         int i = 0;        //счетчик циклов. первый цикл принимает символы первого члена
-        while (!(strings[i].equals("+") || strings[i].equals("-") || strings[i].equals("*") || strings[i].equals("/"))) {
-            first += strings[i];
+        while (!(text.charAt(i) == '+' || text.charAt(i) == '-' || text.charAt(i) == '*' || text.charAt(i) == '/')) {
+            first += text.charAt(i);
             i++;
         }
         //условие работает на оператор, запоминая его в хранитель и записывая первый член в переменную x
-        if (strings[i].equals("+") || strings[i].equals("-") || strings[i].equals("*") || strings[i].equals("/")) {
+        if (text.charAt(i) == '+' || text.charAt(i) == '-' || text.charAt(i) == '*' || text.charAt(i) == '/') {
             calculating.x = Double.parseDouble(first);
-            operation = strings[i];
+            operation = text.charAt(i);
             i++;
         }
 
-        while (i != strings.length) {      //второй цикл для записи символов второго члена
-            second += strings[i];
+        while (i != text.length()) {      //второй цикл для записи символов второго члена
+            second += text.charAt(i);
             i++;
         }
 
         calculating.y = Double.parseDouble(second);     //запись второго члена в переменную y
 
         switch (operation) {
-            case ("+"):
+            case ('+'):
                 GUI.jTextField.setText(Double.toString(calculating.sum()));
                 break;
-            case ("-"):
+            case ('-'):
                 GUI.jTextField.setText(Double.toString(calculating.dif()));
                 break;
-            case ("*"):
+            case ('*'):
                 GUI.jTextField.setText(Double.toString(calculating.mult()));
                 break;
-            case ("/"):
+            case ('/'):
                 GUI.jTextField.setText(Double.toString(calculating.div()));
                 break;
         }
