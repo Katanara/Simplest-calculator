@@ -1,7 +1,7 @@
 public class Calculating {
 
-     double x = 0;
-     double y = 0;
+     public double x = 0;
+     public double y = 0;
 
     public double sum() {
 
